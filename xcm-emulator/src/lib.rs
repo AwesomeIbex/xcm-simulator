@@ -177,7 +177,7 @@ macro_rules! __impl_ext_for_parachain {
 		}
 
 		impl $name {
-			fn prepare_for_xcmp() {
+			pub fn prepare_for_xcmp() {
 				$ext_name.with(|v| {
 					v.borrow_mut().execute_with(|| {
 						use $crate::{Get, Hooks};
