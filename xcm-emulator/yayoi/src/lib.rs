@@ -1,7 +1,7 @@
 use frame_support::{
 	construct_runtime, parameter_types,
 	traits::{Everything, Nothing},
-	weights::{constants::WEIGHT_PER_SECOND, Weight},
+	weights::Weight,
 };
 use frame_system::EnsureRoot;
 use pallet_xcm::XcmPassthrough;
@@ -133,8 +133,8 @@ impl Config for XcmConfig {
 }
 
 parameter_types! {
-	pub ReservedXcmpWeight: Weight = WEIGHT_PER_SECOND / 4;
-	pub ReservedDmpWeight: Weight = WEIGHT_PER_SECOND / 4;
+	pub ReservedXcmpWeight: Weight = Weight::from_ref_time(1_000_000_000_000 / 4);
+	pub ReservedDmpWeight: Weight = Weight::from_ref_time(1_000_000_000_000 / 4);
 }
 
 impl cumulus_pallet_parachain_system::Config for Runtime {
